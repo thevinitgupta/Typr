@@ -1,0 +1,91 @@
+body {
+    box-sizing : border-box;
+    width: 90vw;
+    height: 90vh;
+    padding: 3% 3% 7% 7%;
+    background-color: #222831;
+    font-family: 'Audiowide', sans-serif, serif, cursive;
+}
+.header {
+    width: 300px;
+    margin: 0 auto 20px auto;
+    color : #bbbfca
+}
+.main-section {
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-gap: 40px;
+    height: 70vh;
+    .left {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        border-radius: 40px;
+        background: linear-gradient(145deg, #1f242c, #242b34);
+        box-shadow:  12px 12px 25px #1a1e25,
+                     -12px -12px 25px #2a323d;
+        .btn {
+            width: 150px;
+            height: 50px;
+            margin-top: 20px;
+            font-size: 20px;
+            border: none;
+            outline: none;
+            color: #4e535a;
+            font-weight: bold;
+            font-family: 'Audiowide', cursive;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #242b34, #1f242c);
+            box-shadow:  9px 9px 15px #1a1e25,
+                         -9px -9px 15px #2a323d;
+            &:active {
+                border-radius: 20px;
+                background: linear-gradient(145deg, #1f242c, #242b34);
+                box-shadow:  9px 9px 15px #1a1e25,
+                             -9px -9px 15px #2a323d;
+            }
+        }
+        .clock {
+            height: 150px;
+            width: 150px;
+            font-size: 20px;
+            color: #4e535a;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #1f242c, #242b34);
+            box-shadow:  9px 9px 15px #1a1e25,
+                        -9px -9px 15px #2a323d;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            .timer {
+                font-size: 30px;
+            }
+
+        }
+    }
+    .right {
+        border-radius: 40px;
+        background: #222831;
+        box-shadow:  -17px -17px 34px #1f242c,
+                     17px 17px 34px #252c36;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        .paragraph {
+            box-sizing: border-box;
+            width: 100%;
+            height: 200px;
+            padding: 30px 50px;
+            .content {
+                color: #f4f4f2cb;
+                font-size: 25px;
+                font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+            }
+        }
+    }
+}
