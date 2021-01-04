@@ -1,8 +1,6 @@
 body {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
   margin: 0;
-  width: 90vw;
+  width: 93vw;
   height: 100vh;
   padding: 3% 3% 7% 4%;
   overflow: hidden;
