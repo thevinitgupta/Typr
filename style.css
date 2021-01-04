@@ -1,7 +1,8 @@
 body {
   width: 90vw;
   height: 90vh;
-  padding: 3% 3% 7% 7%;
+  padding: 3% 3% 7% 4%;
+  overflow: hidden;
   background-color: #222831;
   font-family: 'Audiowide', sans-serif, serif, cursive;
 }
