@@ -1,8 +1,8 @@
 body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 90vw;
-  height: 90vh;
+  width: 100vw;
+  height: 100vh;
   padding: 3% 3% 7% 7%;
   background-color: #222831;
   font-family: 'Audiowide', sans-serif, serif, cursive;
