@@ -10,7 +10,7 @@ body {
 .header {
     width: 300px;
     margin: 0 auto 20px auto;
-    color : #bbbfca
+    color : #bbbfca;
 }
 .main-section {
     display: grid;
@@ -34,7 +34,7 @@ body {
             font-size: 20px;
             border: none;
             outline: none;
-            color: #4e535a;
+            color:#bbbfca;;
             font-weight: bold;
             font-family: 'Audiowide', cursive;
             border-radius: 20px;
@@ -43,16 +43,17 @@ body {
                          -9px -9px 15px #2a323d;
             &:active {
                 border-radius: 20px;
-                background: linear-gradient(145deg, #1f242c, #242b34);
-                box-shadow:  9px 9px 15px #1a1e25,
-                             -9px -9px 15px #2a323d;
+                background: linear-gradient(145deg, #242b34, #1a212b,#242b34);
+                box-shadow: none;
+                box-shadow:  inset(9px 9px 10px #353c49,
+                             -9px -9px 10px #323b47);
             }
         }
         .clock {
             height: 150px;
             width: 150px;
             font-size: 20px;
-            color: #4e535a;
+            color: #bbbfca;;
             border: none;
             border-radius: 20px;
             background: linear-gradient(145deg, #1f242c, #242b34);
@@ -71,8 +72,8 @@ body {
     .right {
         border-radius: 40px;
         background: #222831;
-        box-shadow:  -17px -17px 34px #1f242c,
-                     17px 17px 34px #252c36;
+        box-shadow:  -17px -17px 34px #2c3541a1,
+                     17px 17px 34px #1c2027;
         display: flex;
         flex-direction: column;
         align-items: center;

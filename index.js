@@ -14,11 +14,13 @@ for(let i = 0;i<keys.length;i++) {
 }
 
 document.addEventListener("keyup",function(event) {
+    event.preventDefault()
     let keyCode = event.key.charCodeAt(0);
+    //checkCurrentInput(event.key,para.innerHTML.charAt(0)
     if(keyCode>=97 && keyCode<=122){
         for(let i = 0;i<keys.length;i++) {
             if(parseInt(keys.item(i).attributes[1].value)===keyCode){
-                console.log(keys.item(i).attributes[1].value)
+                // console.log(keys.item(i).attributes[1].value)
                  keys.item(i).classList.add("pressed");
                  setTimeout(()=>{
                     keys.item(i).classList.remove("pressed"); 
@@ -79,3 +81,6 @@ function pauseClock(condition){
         clearInterval(window.timerClockID)
     }
 }
+// function checkCurrentInput(charTyped,contentChar){
+// return charTyped===contentChar;
+// }
