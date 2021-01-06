@@ -112,6 +112,10 @@ body {
                box-shadow:  5px 5px 15px #1a1e25,
                             -5px -5px 15px #2a323d;
                margin: 5px 10px;
+           }
+           .pressed {
+                background: #1b1c20;
+                box-shadow: none;
            } 
         }
     }

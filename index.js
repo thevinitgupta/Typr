@@ -7,13 +7,34 @@ let para = document.querySelector("#content-to-type");
 let start = document.querySelector("#start");
 let minutes = document.querySelector("#minutes");
 let seconds = document.querySelector("#seconds");
+let keys = document.querySelectorAll(".key");
+let dataKeys = [];
+for(let i = 0;i<keys.length;i++) {
+    dataKeys.push(keys.item(i).attributes[1].value);
+}
+
+document.addEventListener("keyup",function(event) {
+    let keyCode = event.key.charCodeAt(0);
+    if(keyCode>=97 && keyCode<=122){
+        for(let i = 0;i<keys.length;i++) {
+            if(parseInt(keys.item(i).attributes[1].value)===keyCode){
+                console.log(keys.item(i).attributes[1].value)
+                 keys.item(i).classList.add("pressed");
+                 setTimeout(()=>{
+                    keys.item(i).classList.remove("pressed"); 
+                 },100)
+                 break;
+            }
+        }        
+    }
+})
 
 start.addEventListener("click", loadContent);
 
 function loadContent(){
     if(start.innerHTML==="Start"){
         let paraNumber = randomParaGenerator();
-        para.innerHTML = content[paraNumber];
+        para.innerHTML = content[paraNumber].toString().toLocaleLowerCase();
         startClock(seconds.innerHTML,minutes.innerHTML,start.innerHTML);//start timer
         start.innerHTML = "Pause";
     }
