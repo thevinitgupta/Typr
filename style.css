@@ -109,9 +109,8 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .main-section .right .paragraph {
@@ -126,5 +125,53 @@ body {
   color: #f4f4f2cb;
   font-size: 25px;
   font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+}
+
+.main-section .right .keyboard {
+  width: 80%;
+  height: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.main-section .right .keyboard .top, .main-section .right .keyboard .middle, .main-section .right .keyboard .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-section .right .keyboard .key {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70px;
+  height: 70px;
+  font-size: 20px;
+  color: #9ba4b4;
+  border-radius: 5px;
+  background: #202227;
+  -webkit-box-shadow: 5px 5px 15px #1a1e25, -5px -5px 15px #2a323d;
+          box-shadow: 5px 5px 15px #1a1e25, -5px -5px 15px #2a323d;
+  margin: 5px 10px;
 }
 /*# sourceMappingURL=style.css.map */

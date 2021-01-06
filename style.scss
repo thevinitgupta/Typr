@@ -76,7 +76,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
         .paragraph {
             box-sizing: border-box;
             width: 100%;
@@ -87,6 +87,32 @@ body {
                 font-size: 25px;
                 font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
             }
+        }
+        .keyboard {
+            width: 80%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            .top,.middle,.bottom  {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+           .key {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               width: 70px;
+               height: 70px;
+               font-size: 20px;
+               color: #9ba4b4;
+               border-radius: 5px;
+               background:  #202227;
+               box-shadow:  5px 5px 15px #1a1e25,
+                            -5px -5px 15px #2a323d;
+               margin: 5px 10px;
+           } 
         }
     }
 }
