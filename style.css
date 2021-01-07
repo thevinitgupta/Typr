@@ -124,9 +124,30 @@ body {
 }
 
 .main-section .right .paragraph .content {
-  color: #f4f4f2cb;
-  font-size: 25px;
+  font-size: 30px;
   font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+}
+
+.main-section .right .paragraph .content .typing {
+  display: inline-block;
+  color: #f4f4f2cb;
+}
+
+.main-section .right .paragraph .content .typed {
+  color: #34626c;
+}
+
+.main-section .right .paragraph .content .wrong {
+  color: #f05454;
+}
+
+.main-section .right #input-content {
+  position: absolute;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  color: transparent;
+  background-color: none;
 }
 
 .main-section .right .keyboard {
@@ -168,7 +189,7 @@ body {
           align-items: center;
   width: 70px;
   height: 70px;
-  font-size: 20px;
+  font-size: 25px;
   color: #9ba4b4;
   border-radius: 5px;
   background: #202227;
@@ -181,5 +202,6 @@ body {
   background: #1b1c20;
   -webkit-box-shadow: none;
           box-shadow: none;
+  color: #41454d;
 }
 /*# sourceMappingURL=style.css.map */

@@ -84,10 +84,27 @@ body {
             height: 200px;
             padding: 30px 100px;
             .content {
-                color: #f4f4f2cb;
-                font-size: 25px;
+                font-size: 30px;
                 font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+                .typing {
+                    display: inline-block;
+                    color: #f4f4f2cb;
+                }
+                .typed {
+                    color : #34626c;
+                }
+                .wrong {
+                    color : #f05454;
+                }
             }
+        }
+        #input-content {
+            position: absolute;
+            z-index: -1;
+            width: 0;
+            height: 0;
+            color: transparent;
+            background-color: none;
         }
         .keyboard {
             width: 80%;
@@ -106,7 +123,7 @@ body {
                align-items: center;
                width: 70px;
                height: 70px;
-               font-size: 20px;
+               font-size: 25px;
                color: #9ba4b4;
                border-radius: 5px;
                background:  #202227;
@@ -117,6 +134,7 @@ body {
            .pressed {
                 background: #1b1c20;
                 box-shadow: none;
+                color: #41454d;
            } 
         }
     }
