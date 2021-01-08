@@ -1,0 +1,13 @@
+function blinking(letter){
+    setInterval(()=>{
+        
+    },500)
+}
+
+    setInterval(()=>{
+        if(letters.item(inputVal.length).classList[1]==="current")
+        letters.item(inputVal.length).classList.remove("current");
+        else {
+            letters.item(inputVal.length).classList.add("current");
+        }
+    },500)

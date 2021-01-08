@@ -156,14 +156,22 @@ body {
 .main-section .right .paragraph .content .typing {
   display: inline-block;
   color: #f4f4f2cb;
+  background: none;
+}
+
+.main-section .right .paragraph .content .current {
+  background-color: #79a3b1;
+  color: #3e4149;
 }
 
 .main-section .right .paragraph .content .typed {
   color: #3e4149;
+  background: none;
 }
 
 .main-section .right .paragraph .content .wrong {
   color: #f05454;
+  background: none;
 }
 
 .main-section .right #input-content {

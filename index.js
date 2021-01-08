@@ -31,7 +31,9 @@ start.addEventListener("click", loadContent);
 //keypress animation 
 function keyPress(event){
     let keyboardCode = event.keyCode;
+    
     keyboardCode+=32;
+
     for(let i = 0;i<keys.length;i++) {
         if(parseInt(keys.item(i).attributes[1].value)===keyboardCode){
              //console.log(keys.item(i).attributes[1].value)
@@ -45,22 +47,48 @@ function keyPress(event){
 }
 
 function inputChange(){
-
     let inputVal = inputContent.value;
+    console.log(letters.item(inputVal.length-1))
+    //.classList.remove("current");
+    
     let keyCode = inputVal.charCodeAt(0);
-
+   
+   startBlinking(inputVal.length)
     checkInput(keyCode,inputVal);
 }
+function startBlinking(letterId){
+    window.blinkingId = setInterval(()=>{
+        blinking(letters.item(letterId));
+    },150);
+}
+function clearBlinking(){
+    clearInterval(window.blinkingId);
+}
+function blinking(letter){
+    if(letter.classList[1]==="current")
+        letter.classList.remove("current");
+        else {
+            letter.classList.add("current");
+        }
+}
+
+//letters.item(inputValue.length-1).innerHTML.charAt(0)==="_"&& inputValue ||
 
 function checkInput(keyCode,inputValue){
+    
     if(keyCode>=97 && keyCode<=122 || keyCode===32){
         if(letters.item(inputValue.length-1).innerHTML===inputValue.charAt(inputValue.length-1)){
             //console.log(letters.item(inputValue.length-1),inputValue)
+            clearBlinking();
+            startBlinking(inputValue.length);
+            
             letters.item(inputValue.length-1).classList.add("typed");
         }
         else {
             typingLetterErrors++;
             errorVal.innerHTML = typingLetterErrors;
+            clearBlinking();
+            startBlinking(inputValue.length);
             letters.item(inputValue.length-1).classList.add("wrong");
             console.log(typingLetterErrors)
         }
@@ -107,13 +135,13 @@ function wordSeparator(content){
     return content.split(/[,. -_]/)
 }
 function letterSeparator(content,id){
-    let wordSpan=" ";
+    let wordSpan="";
     for(let charIndex=0;charIndex<content.length;charIndex++){
         wordSpan= wordSpan + `<div class="typing" id="${id}">${content.charAt(charIndex)}</div>`;
         id++;
     }
     wordSpan.trim();
-    wordSpan= wordSpan + `<div class="typing" id="${id}"> </div>`
+    wordSpan= wordSpan + `<div class="typing" id="${id}">_</div>`
     return wordSpan;
 }
 function randomParaGenerator(){
@@ -127,7 +155,7 @@ function startClock(secs,mins,condition){
     //If it is start, call the increase seconds function
     //IF not, do nothing
 
-
+    startBlinking(inputContent.value.length)
     //using window object because using local variables result in error in pausing the clock because of scoping
      window.timerClockID = setInterval(() => { 
         if(condition==="Start"|| condition==="Resume"){

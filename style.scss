@@ -107,12 +107,19 @@ body {
                 .typing {
                     display: inline-block;
                     color: #f4f4f2cb;
+                    background: none;
+                }
+                .current {
+                    background-color: #79a3b1;
+                    color:#3e4149;
                 }
                 .typed {
                     color : #3e4149;
+                    background: none;
                 }
                 .wrong {
                     color : #f05454;
+                    background: none;
                 }
             }
         }
