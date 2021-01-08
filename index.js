@@ -9,7 +9,8 @@ let minutes = document.querySelector("#minutes");
 let seconds = document.querySelector("#seconds");
 let keys = document.querySelectorAll(".key");
 let inputContent = document.querySelector("#input-content");
-let letters;
+let errorVal = document.querySelector("#error-val");
+let letters,typingLetterErrors=0;
 
 
 // let dataKeys = [];
@@ -17,32 +18,61 @@ let letters;
 //     dataKeys.push(keys.item(i).attributes[1].value);
 // }
 
-document.addEventListener("keyup",function(event) {
-    let keyCode = event.key.charCodeAt(0);
+//keydown event listener 
+document.addEventListener("keydown",keyPress);
+
+//updated input value event listener
+document.querySelector("#input-content").addEventListener("input",inputChange)
+
+//start typing button event listener
+start.addEventListener("click", loadContent);
+
+
+//keypress animation 
+function keyPress(event){
+    let keyboardCode = event.keyCode;
+    keyboardCode+=32;
+    for(let i = 0;i<keys.length;i++) {
+        if(parseInt(keys.item(i).attributes[1].value)===keyboardCode){
+             //console.log(keys.item(i).attributes[1].value)
+             keys.item(i).classList.add("pressed");
+             setTimeout(()=>{
+                keys.item(i).classList.remove("pressed"); 
+             },100)
+             break;
+        }
+    }  
+}
+
+function inputChange(){
+
     let inputVal = inputContent.value;
-    //console.log(inputVal.charCodeAt(inputVal.length-1))
-    //checkCurrentInput(event.key,para.innerHTML.charAt(0)
-    if(keyCode>=97 && keyCode<=122){
-        if(letters.item(inputVal.length-1).innerHTML===inputVal.charAt(inputVal.length-1)){
-            letters.item(inputVal.length-1).classList.add("typed");
+    let keyCode = inputVal.charCodeAt(0);
+
+    checkInput(keyCode,inputVal);
+}
+
+function checkInput(keyCode,inputValue){
+    if(keyCode>=97 && keyCode<=122 || keyCode===32){
+        if(letters.item(inputValue.length-1).innerHTML===inputValue.charAt(inputValue.length-1)){
+            //console.log(letters.item(inputValue.length-1),inputValue)
+            letters.item(inputValue.length-1).classList.add("typed");
         }
         else {
-            letters.item(inputVal.length-1).classList.add("wrong");
+            typingLetterErrors++;
+            errorVal.innerHTML = typingLetterErrors;
+            letters.item(inputValue.length-1).classList.add("wrong");
+            console.log(typingLetterErrors)
         }
-        for(let i = 0;i<keys.length;i++) {
-            if(parseInt(keys.item(i).attributes[1].value)===keyCode){
-                // console.log(keys.item(i).attributes[1].value)
-                 keys.item(i).classList.add("pressed");
-                 setTimeout(()=>{
-                    keys.item(i).classList.remove("pressed"); 
-                 },100)
-                 break;
-            }
-        }        
     }
-})
+}
 
-start.addEventListener("click", loadContent);
+
+    //event.key.charCodeAt(0);
+
+    //console.log(inputVal.charCodeAt(inputVal.length-1))
+    //checkCurrentInput(event.key,para.innerHTML.charAt(0)      
+
 
 function loadContent(){
     inputContent.focus();
@@ -92,6 +122,7 @@ function randomParaGenerator(){
 function startClock(secs,mins,condition){
     let secsVal = parseInt(secs);
     let minsVal = parseInt(mins);
+
     //After every second, check the value of condition
     //If it is start, call the increase seconds function
     //IF not, do nothing
@@ -118,6 +149,3 @@ function pauseClock(condition){
         clearInterval(window.timerClockID)
     }
 }
-// function checkCurrentInput(charTyped,contentChar){
-// return charTyped===contentChar;
-// }

@@ -53,7 +53,7 @@ body {
             height: 150px;
             width: 150px;
             font-size: 20px;
-            color: #bbbfca;;
+            color: #bbbfca;
             border: none;
             border-radius: 20px;
             background: linear-gradient(145deg, #1f242c, #242b34);
@@ -66,8 +66,26 @@ body {
             .timer {
                 font-size: 30px;
             }
-
         }
+        .errors {
+            height: 80px;
+            width: 150px;
+            
+            color: #bbbfca;
+            font-size: 20px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #1f242c, #242b34);
+            box-shadow:  9px 9px 15px #1a1e25,
+                        -9px -9px 15px #2a323d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            #error-val {
+                color : #f05454;
+                margin-left: 10px;
+            }
+        }
+
     }
     .right {
         border-radius: 40px;

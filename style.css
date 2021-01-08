@@ -96,6 +96,31 @@ body {
   font-size: 30px;
 }
 
+.main-section .left .errors {
+  height: 80px;
+  width: 150px;
+  color: #bbbfca;
+  font-size: 20px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #1f242c, #242b34);
+  -webkit-box-shadow: 9px 9px 15px #1a1e25, -9px -9px 15px #2a323d;
+          box-shadow: 9px 9px 15px #1a1e25, -9px -9px 15px #2a323d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-section .left .errors #error-val {
+  color: #f05454;
+  margin-left: 10px;
+}
+
 .main-section .right {
   border-radius: 40px;
   background: #222831;
