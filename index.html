@@ -12,7 +12,7 @@
     <div class="header">
         <h1>Welcome, Typr</h1>
     </div>
-    <div class="main-section">
+    <div class="main-section" id="main-body">
         <div class="left">
             <button class="btn" id="start">Start</button>
             <div class="clock">
@@ -30,8 +30,13 @@
             </span>
             <span id="error-val">0</span>
         </div>
+        
         </div>
         <div class="right">
+            <div class="evaluation hidden">
+                <span class="speed">Speed/min</span><span id="speed-val">0</span>
+                <span class="score">Score</span> <span id="score-val">0</span>
+            </div>
             <div class="paragraph">
                 <span class="content" id="content-to-type"></span>
             </div>

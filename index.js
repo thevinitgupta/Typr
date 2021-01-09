@@ -2,6 +2,7 @@ let content = [
     ["Cosmology deals with the world as the totality of space, time and all phenomena. Historically, it has had quite a broad scope, and in many cases was founded in religion. In modern use metaphysical cosmology addresses questions about the Universe which are beyond the scope of science."],
     ["Medicine provides another example of practically oriented investigation of nature among the Ancient Greeks. It has been pointed out that Greek medicine was not the province of a single trained profession and there was no accepted method of qualification of licensing."]
 ]
+ 
 
 let para = document.querySelector("#content-to-type");
 let start = document.querySelector("#start");
@@ -10,6 +11,9 @@ let seconds = document.querySelector("#seconds");
 let keys = document.querySelectorAll(".key");
 let inputContent = document.querySelector("#input-content");
 let errorVal = document.querySelector("#error-val");
+let evaluation = document.querySelector(".evaluation");
+let speedVal = document.querySelector("#speed-val");
+let scoreVal = document.querySelector("#score-val");
 let letters,typingLetterErrors=0;
 
 
@@ -48,18 +52,18 @@ function keyPress(event){
 
 function inputChange(){
     let inputVal = inputContent.value;
-    console.log(letters.item(inputVal.length-1))
     //.classList.remove("current");
     
-    let keyCode = inputVal.charCodeAt(0);
-   
+    let keyCode = inputVal.charCodeAt(inputVal.length-1);
+    if(inputVal.length<=para.length-1)
    startBlinking(inputVal.length)
     checkInput(keyCode,inputVal);
 }
 function startBlinking(letterId){
-    window.blinkingId = setInterval(()=>{
-        blinking(letters.item(letterId));
-    },150);
+
+        window.blinkingId = setInterval(()=>{
+            blinking(letters.item(letterId));
+        },150);
 }
 function clearBlinking(){
     clearInterval(window.blinkingId);
@@ -75,9 +79,25 @@ function blinking(letter){
 //letters.item(inputValue.length-1).innerHTML.charAt(0)==="_"&& inputValue ||
 
 function checkInput(keyCode,inputValue){
-    
+    if(inputValue.length===letters.length){
+        pauseClock("Pause");
+       let [minsCompleted,secsCompleted] = getCurrentTimerValue(minutes.innerHTML,seconds.innerHTML);
+       let totalCorrect = letters.length - typingLetterErrors;
+       let percentageCorrect = Math.floor(totalCorrect/letters.length * 100);
+       let charsPerSecond = Math.floor(totalCorrect/(minsCompleted*60 + secsCompleted));
+       let charsPerMinute = Math.floor(charsPerSecond*60);
+       speedVal.innerHTML = charsPerMinute;
+       scoreVal.innerHTML = percentageCorrect;
+       evaluation.classList.remove("hidden");
+       start.innerHTML("Resume")
+       start.removeEventListener("click",loadContent)
+       console.log("Percentage =" +percentageCorrect)
+       console.log("Speed "+charsPerMinute+ " per minute")
+    }
+    else if(inputValue.length<letters.length){
     if(keyCode>=97 && keyCode<=122 || keyCode===32){
-        if(letters.item(inputValue.length-1).innerHTML===inputValue.charAt(inputValue.length-1)){
+        if(keyCode===32) keyCode = 95;
+       if(letters.item(inputValue.length-1).innerHTML.charCodeAt(0)===keyCode){
             //console.log(letters.item(inputValue.length-1),inputValue)
             clearBlinking();
             startBlinking(inputValue.length);
@@ -90,9 +110,10 @@ function checkInput(keyCode,inputValue){
             clearBlinking();
             startBlinking(inputValue.length);
             letters.item(inputValue.length-1).classList.add("wrong");
-            console.log(typingLetterErrors)
+            console.log("Errors = "+typingLetterErrors)
         }
     }
+}
 }
 
 
@@ -105,6 +126,7 @@ function checkInput(keyCode,inputValue){
 function loadContent(){
     inputContent.focus();
     if(start.innerHTML==="Start"){
+        typingLetterErrors=0;
         let paraNumber = randomParaGenerator();
         let wordsArray = wordSeparator(content[paraNumber].toString().toLocaleLowerCase());
         let typingPara =" ";
@@ -148,8 +170,8 @@ function randomParaGenerator(){
     return Math.floor(Math.random()*2);
 }
 function startClock(secs,mins,condition){
-    let secsVal = parseInt(secs);
-    let minsVal = parseInt(mins);
+    let timerVals = getCurrentTimerValue(mins,secs);
+    let [secsVal,minsVal] = [...timerVals];
 
     //After every second, check the value of condition
     //If it is start, call the increase seconds function
@@ -168,7 +190,14 @@ function startClock(secs,mins,condition){
             minutes.innerHTML = minsVal;
         }
     }, 1000);
-}   
+}  
+
+function getCurrentTimerValue(mins,secs){
+    let secsVal = parseInt(secs);
+    let minsVal = parseInt(mins);
+    let timer = [minsVal,secsVal];
+    return timer;
+}
 function increaseSeconds(secondsValue){
     return secondsValue+1;
 }
