@@ -29,7 +29,7 @@ document.addEventListener("keydown",keyPress);
 document.querySelector("#input-content").addEventListener("input",inputChange)
 
 //start typing button event listener
-start.addEventListener("click", loadContent);
+start.addEventListener("click", loadContent,true);
 
 
 //keypress animation 
@@ -88,8 +88,8 @@ function checkInput(keyCode,inputValue){
        let charsPerMinute = Math.floor(charsPerSecond*60);
        speedVal.innerHTML = charsPerMinute;
        scoreVal.innerHTML = percentageCorrect;
-       start.innerHTML("Resume")
-       start.removeEventListener("click",loadContent)
+       start.innerHTML = "Restart";
+       //start.removeEventListener("click",loadContent,true)
        console.log("Percentage =" +percentageCorrect)
        console.log("Speed "+charsPerMinute+ " per minute")
     }
@@ -123,6 +123,9 @@ function checkInput(keyCode,inputValue){
 
 
 function loadContent(){
+    if(start.innerHTML==="Restart"){
+        window.location.reload();
+    }
     inputContent.focus();
     if(start.innerHTML==="Start"){
         typingLetterErrors=0;
@@ -170,7 +173,7 @@ function randomParaGenerator(){
 }
 function startClock(secs,mins,condition){
     let timerVals = getCurrentTimerValue(mins,secs);
-    let [secsVal,minsVal] = [...timerVals];
+    let [minsVal,secsVal] = [...timerVals];
 
     //After every second, check the value of condition
     //If it is start, call the increase seconds function
