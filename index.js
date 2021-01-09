@@ -88,7 +88,6 @@ function checkInput(keyCode,inputValue){
        let charsPerMinute = Math.floor(charsPerSecond*60);
        speedVal.innerHTML = charsPerMinute;
        scoreVal.innerHTML = percentageCorrect;
-       evaluation.classList.remove("hidden");
        start.innerHTML("Resume")
        start.removeEventListener("click",loadContent)
        console.log("Percentage =" +percentageCorrect)
