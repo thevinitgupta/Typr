@@ -26,7 +26,7 @@ let letters,typingLetterErrors=0;
 document.addEventListener("keydown",keyPress);
 
 //updated input value event listener
-document.querySelector("#input-content").addEventListener("input",inputChange)
+inputContent.addEventListener("input",inputChange)
 
 //start typing button event listener
 start.addEventListener("click", loadContent,true);
@@ -35,9 +35,15 @@ start.addEventListener("click", loadContent,true);
 //keypress animation 
 function keyPress(event){
     let keyboardCode = event.keyCode;
-    
+    if(keyboardCode>=48&&keyboardCode<=57) {
+        //inputContent.removeEventListener("input",inputChange);
+        // inputContent.innerHTML = inputContent.innerHTML.substr(0,inputContent.length-2)
+        console.log(keyboardCode)
+        //inputContent.addEventListener("input",inputChange)
+    }
+    else {
     keyboardCode+=32;
-
+    
     for(let i = 0;i<keys.length;i++) {
         if(parseInt(keys.item(i).attributes[1].value)===keyboardCode){
              //console.log(keys.item(i).attributes[1].value)
@@ -47,13 +53,20 @@ function keyPress(event){
              },100)
              break;
         }
-    }  
+    }
+}  
 }
 
-function inputChange(){
+function inputChange(event){
     let inputVal = inputContent.value;
     //.classList.remove("current");
-    
+
+    //finding the integer equivalent of the last input character
+    let intVal = parseInt(inputContent.value.charAt(inputContent.value.length-1));
+
+    //if integer value is not NaN i.e. it is a number, remove it from the input value
+    if(!Number.isNaN(intVal)) inputContent.value = inputVal.substr(0,inputContent.value.length-1);
+    console.log(inputContent.value)
     let keyCode = inputVal.charCodeAt(inputVal.length-1);
     if(inputVal.length<=para.length-1)
    startBlinking(inputVal.length)
@@ -85,8 +98,8 @@ function checkInput(keyCode,inputValue){
        let totalCorrect = letters.length - typingLetterErrors;
        let percentageCorrect = Math.floor(totalCorrect/letters.length * 100);
        let charsPerSecond = Math.floor(totalCorrect/(minsCompleted*60 + secsCompleted));
-       let charsPerMinute = Math.floor(charsPerSecond*60);
-       speedVal.innerHTML = charsPerMinute;
+       let wordsPerMinute = Math.floor(charsPerSecond*60)/10;
+       speedVal.innerHTML = wordsPerMinute+" words/min";
        scoreVal.innerHTML = percentageCorrect;
        start.innerHTML = "Restart";
        //start.removeEventListener("click",loadContent,true)
