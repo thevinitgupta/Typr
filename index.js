@@ -1,7 +1,22 @@
-let content = [
-    ["Cosmology deals with the world as the totality of space, time and all phenomena. Historically, it has had quite a broad scope, and in many cases was founded in religion. In modern use metaphysical cosmology addresses questions about the Universe which are beyond the scope of science."],
-    ["Medicine provides another example of practically oriented investigation of nature among the Ancient Greeks. It has been pointed out that Greek medicine was not the province of a single trained profession and there was no accepted method of qualification of licensing."]
-]
+let content = [""]
+window.addEventListener('load', getData, false )
+function getData(){
+    let page = randomParaGenerator(7268);
+    fetch("https://quote-garden.herokuapp.com/api/v3/quotes?page="+page).then((res)=>{
+        return res.json();
+    }).then((data)=>{
+        console.log(data)
+        content = [""]
+        data.data.forEach((obj,index)=>{
+            if(index<5)
+            content[0] = content[0]+obj.quoteText;
+        })
+        console.log(content)
+    }).catch((err)=>{
+        content = [["Cosmology deals with the world as the totality of space, time and all phenomena. Historically, it has had quite a broad scope, and in many cases was founded in religion. In modern use metaphysical cosmology addresses questions about the Universe which are beyond the scope of science."],
+        ["Medicine provides another example of practically oriented investigation of nature among the Ancient Greeks. It has been pointed out that Greek medicine was not the province of a single trained profession and there was no accepted method of qualification of licensing."]]
+    })
+}
  
 
 let para = document.querySelector("#content-to-type");
@@ -141,9 +156,22 @@ function loadContent(){
     }
     inputContent.focus();
     if(start.innerHTML==="Start"){
-        typingLetterErrors=0;
-        let paraNumber = randomParaGenerator();
-        let wordsArray = wordSeparator(content[paraNumber].toString().toLocaleLowerCase());
+        setNewContent();
+    }
+    else if (start.innerHTML==="Resume"){
+        startClock(seconds.innerHTML,minutes.innerHTML,start.innerHTML);//resume timer
+        start.innerHTML = "Pause";
+    }
+    else if (start.innerHTML === "Pause"){
+        pauseClock(start.innerHTML); //pausing the clock
+        start.innerHTML="Resume";
+    }
+}
+
+function setNewContent(){
+    typingLetterErrors=0;
+        let paraNumber = randomParaGenerator(1);
+        let wordsArray = wordSeparator(content[0].toLocaleLowerCase());
         let typingPara =" ";
         wordsArray = wordsArray.filter((word)=> word.length>=1)
         //limiting to 25 words 
@@ -158,19 +186,14 @@ function loadContent(){
         letters = document.querySelectorAll(".typing");
         startClock(seconds.innerHTML,minutes.innerHTML,start.innerHTML);//start timer
         start.innerHTML = "Pause";
-    }
-    else if (start.innerHTML==="Resume"){
-        startClock(seconds.innerHTML,minutes.innerHTML,start.innerHTML);//resume timer
-        start.innerHTML = "Pause";
-    }
-    else if (start.innerHTML === "Pause"){
-        pauseClock(start.innerHTML); //pausing the clock
-        start.innerHTML="Resume";
-    }
 }
+
+
 function wordSeparator(content){
     return content.split(/[,. -_]/)
 }
+
+
 function letterSeparator(content,id){
     let wordSpan="";
     for(let charIndex=0;charIndex<content.length;charIndex++){
@@ -181,8 +204,8 @@ function letterSeparator(content,id){
     wordSpan= wordSpan + `<div class="typing" id="${id}">_</div>`
     return wordSpan;
 }
-function randomParaGenerator(){
-    return Math.floor(Math.random()*2);
+function randomParaGenerator(limit){
+    return Math.floor(Math.random()*limit);
 }
 function startClock(secs,mins,condition){
     let timerVals = getCurrentTimerValue(mins,secs);
