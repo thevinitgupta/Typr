@@ -1,5 +1,5 @@
 let content = [];
-// window.addEventListener('load', getData, false )
+window.addEventListener('load', getData, false )
 function getData(){
         const options = {
 	method: 'GET',
