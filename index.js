@@ -11,7 +11,7 @@ function getData(){
 
 fetch('https://theysaidso.p.rapidapi.com/quote/random?language=en', options)
 	.then(response => response.json())
-	.then(response => content = [response.contents.quote]));
+	.then(response => {content = [response.contents.quote]});
 	.catch(err => {
                 console.error(err)
                 content =  [["Cosmology deals with the world as the totality of space, time and all phenomena. Historically, it has had quite a broad scope, and in many cases was founded in religion. In modern use metaphysical cosmology addresses questions about the Universe which are beyond the scope of science."]];        
