@@ -2,6 +2,7 @@ let content = [];
 window.addEventListener('load', getData, false )
 function getData(){
     let minLength = 100;
+    content = [];
     fetch("https://api.quotable.io/random?minLength="+minLength).then((res)=>{
         return res.json();
     }).then((data)=>{
