@@ -1,8 +1,21 @@
-let content = [["Cosmology deals with the world as the totality of space, time and all phenomena. Historically, it has had quite a broad scope, and in many cases was founded in religion. In modern use metaphysical cosmology addresses questions about the Universe which are beyond the scope of science."],
-        ["Medicine provides another example of practically oriented investigation of nature among the Ancient Greeks. It has been pointed out that Greek medicine was not the province of a single trained profession and there was no accepted method of qualification of licensing."]]
-
+let content = [];
 // window.addEventListener('load', getData, false )
 function getData(){
+        const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '78b11c6244msh2a33837ddd5d24bp19091cjsn17744a9e286c',
+		'X-RapidAPI-Host': 'theysaidso.p.rapidapi.com'
+	}
+        };
+
+fetch('https://theysaidso.p.rapidapi.com/quote/random?language=en', options)
+	.then(response => response.json())
+	.then(response => content = [response.contents.quote]));
+	.catch(err => {
+                console.error(err)
+                content =  [["Cosmology deals with the world as the totality of space, time and all phenomena. Historically, it has had quite a broad scope, and in many cases was founded in religion. In modern use metaphysical cosmology addresses questions about the Universe which are beyond the scope of science."]];        
+        });
 //     let page = randomParaGenerator(7268);
 //     fetch("https://quote-garden.herokuapp.com/api/v3/quotes?page="+page).then((res)=>{
 //         return res.json();
