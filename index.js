@@ -13,7 +13,7 @@ async function getData(){
 	    console.log(err);
 	    content =  [["Cosmology deals with the world as the totality of space, time and all phenomena. Historically, it has had quite a broad scope, and in many cases was founded in religion. In modern use metaphysical cosmology addresses questions about the Universe which are beyond the scope of science."]];
     }
-    finally(){
+    finally{
     	console.log(content);
     }
 }
