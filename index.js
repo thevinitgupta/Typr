@@ -1,19 +1,21 @@
 let content = [];
-window.addEventListener('load', getData, false )
-function getData(){
+// window.addEventListener('load', getData, false )
+function async getData(){
     let minLength = 100;
     content = [];
-    fetch("https://api.quotable.io/random?minLength="+minLength).then((res)=>{
-        return res.json();
-    }).then((data)=>{
-        console.log(data)
-        content = [data.content];
-        console.log(content)
-    }).catch((err)=>{
+    try{
+	const resp = await fetch("https://api.quotable.io/random?minLength="+minLength);
+    	const data = await resp.json();
+    	console.log(data);
+    	content = [data.content];
+    }
+    catch(err)=>{
 	    console.log(err);
 	    content =  [["Cosmology deals with the world as the totality of space, time and all phenomena. Historically, it has had quite a broad scope, and in many cases was founded in religion. In modern use metaphysical cosmology addresses questions about the Universe which are beyond the scope of science."]];
-    })
+    }
 }
+
+getData();
  
 
 let para = document.querySelector("#content-to-type");
