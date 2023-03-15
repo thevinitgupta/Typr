@@ -1,6 +1,6 @@
 let content = [];
 // window.addEventListener('load', getData, false )
-function async getData(){
+async function getData(){
     let minLength = 100;
     content = [];
     try{
