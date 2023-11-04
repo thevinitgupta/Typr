@@ -27,6 +27,7 @@ let minutes = document.querySelector("#minutes");
 let seconds = document.querySelector("#seconds");
 let keys = document.querySelectorAll(".key");
 let inputContent = document.querySelector("#input-content");
+inputContent.value = "";
 let errorVal = document.querySelector("#error-val");
 let evaluation = document.querySelector(".evaluation");
 let speedVal = document.querySelector("#speed-val");
@@ -55,7 +56,7 @@ function keyPress(event){
     if(keyboardCode>=48&&keyboardCode<=57) {
         //inputContent.removeEventListener("input",inputChange);
         // inputContent.innerHTML = inputContent.innerHTML.substr(0,inputContent.length-2)
-        console.log(keyboardCode)
+        // console.log(keyboardCode)
         //inputContent.addEventListener("input",inputChange)
     }
     else {
@@ -75,6 +76,7 @@ function keyPress(event){
 }
 
 function inputChange(event){
+
     let inputVal = inputContent.value;
     //.classList.remove("current");
 
@@ -83,7 +85,7 @@ function inputChange(event){
 
     //if integer value is not NaN i.e. it is a number, remove it from the input value
     if(!Number.isNaN(intVal)) inputContent.value = inputVal.substr(0,inputContent.value.length-1);
-    console.log(inputContent.value)
+    // console.log(inputContent.value)
     let keyCode = inputVal.charCodeAt(inputVal.length-1);
     if(inputVal.length<=para.length-1)
    startBlinking(inputVal.length)
@@ -99,7 +101,7 @@ function clearBlinking(){
     clearInterval(window.blinkingId);
 }
 function blinking(letter){
-    if(letter.classList[1]==="current")
+    if(letter!=null && letter.classList[1]==="current")
         letter.classList.remove("current");
         else {
             letter.classList.add("current");
@@ -159,6 +161,7 @@ function loadContent(){
     inputContent.focus();
     if(start.innerHTML==="Start"){
         setNewContent();
+        para = document.querySelector("#content-to-type");
     }
     else if (start.innerHTML==="Resume"){
         startClock(seconds.innerHTML,minutes.innerHTML,start.innerHTML);//resume timer
@@ -178,8 +181,9 @@ function setNewContent(){
         wordsArray = wordsArray.filter((word)=> word.length>=1)
         //limiting to 25 words 
         let letterId = 0;
-        for(let wordIndex =0;wordIndex<25;wordIndex++){
+        for(let wordIndex = 0;wordIndex<Math.min(25,wordsArray.length);wordIndex++){
             let word = wordsArray[wordIndex];
+            console.log("word ",wordIndex,word)
             typingPara = typingPara+letterSeparator(word,letterId);
             letterId = letterId+word.length+1;
         }
@@ -191,15 +195,15 @@ function setNewContent(){
 }
 
 
-function wordSeparator(content){
-    return content.split(/[,. -_]/)
+function wordSeparator(currContent){
+    return currContent.split(/[,. -_]/)
 }
 
 
-function letterSeparator(content,id){
+function letterSeparator(currContent,id){
     let wordSpan="";
-    for(let charIndex=0;charIndex<content.length;charIndex++){
-        wordSpan= wordSpan + `<div class="typing" id="${id}">${content.charAt(charIndex)}</div>`;
+    for(let charIndex=0;charIndex<currContent.length;charIndex++){
+        wordSpan= wordSpan + `<div class="typing" id="${id}">${currContent.charAt(charIndex)}</div>`;
         id++;
     }
     wordSpan.trim();
