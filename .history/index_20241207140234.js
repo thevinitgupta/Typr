@@ -8,7 +8,7 @@ async function getData(){
 	const resp = await fetch("https://random-word-api.herokuapp.com/word?number=25&length="+wordLength);
     	const data = await resp.json();
     	console.log(data);
-    	content = [data.join(" ")];
+    	content = [data.join("")];
     }
     catch(err){
 	    console.log(err);
@@ -18,11 +18,8 @@ async function getData(){
     	console.log(content);
     }
 }
-setTimeout(()=> {
-    start.ariaDisabled = true;
-    getData();
-    start.ariaDisabled = false;
-}, 2000)
+
+getData();
  
 
 let para = document.querySelector("#content-to-type");
@@ -159,7 +156,6 @@ function checkInput(keyCode,inputValue){
 
 
 function loadContent(){
-    if(content.length===0) return;
     if(start.innerHTML==="Restart"){
         window.location.reload();
     }

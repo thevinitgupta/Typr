@@ -21,7 +21,7 @@ async function getData(){
 setTimeout(()=> {
     start.ariaDisabled = true;
     getData();
-    start.ariaDisabled = false;
+    start.ariaDisabled = true;
 }, 2000)
  
 
@@ -159,7 +159,6 @@ function checkInput(keyCode,inputValue){
 
 
 function loadContent(){
-    if(content.length===0) return;
     if(start.innerHTML==="Restart"){
         window.location.reload();
     }

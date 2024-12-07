@@ -18,11 +18,8 @@ async function getData(){
     	console.log(content);
     }
 }
-setTimeout(()=> {
-    start.ariaDisabled = true;
-    getData();
-    start.ariaDisabled = false;
-}, 2000)
+
+getData();
  
 
 let para = document.querySelector("#content-to-type");
@@ -159,7 +156,6 @@ function checkInput(keyCode,inputValue){
 
 
 function loadContent(){
-    if(content.length===0) return;
     if(start.innerHTML==="Restart"){
         window.location.reload();
     }

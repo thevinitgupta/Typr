@@ -2,13 +2,12 @@ let content = [];
 // window.addEventListener('load', getData, false )
 async function getData(){
     let minLength = 100;
-    let wordLength = 5;
     content = [];
     try{
-	const resp = await fetch("https://random-word-api.herokuapp.com/word?number=25&length="+wordLength);
+	const resp = await fetch("random-word-api.herokuapp.com/word?number=25&length=3"+minLength);
     	const data = await resp.json();
     	console.log(data);
-    	content = [data.join(" ")];
+    	content = [data.content];
     }
     catch(err){
 	    console.log(err);
@@ -18,11 +17,8 @@ async function getData(){
     	console.log(content);
     }
 }
-setTimeout(()=> {
-    start.ariaDisabled = true;
-    getData();
-    start.ariaDisabled = false;
-}, 2000)
+
+getData();
  
 
 let para = document.querySelector("#content-to-type");
@@ -159,7 +155,6 @@ function checkInput(keyCode,inputValue){
 
 
 function loadContent(){
-    if(content.length===0) return;
     if(start.innerHTML==="Restart"){
         window.location.reload();
     }

@@ -159,7 +159,7 @@ function checkInput(keyCode,inputValue){
 
 
 function loadContent(){
-    if(content.length===0) return;
+    if()
     if(start.innerHTML==="Restart"){
         window.location.reload();
     }
